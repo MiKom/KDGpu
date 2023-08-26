@@ -75,6 +75,7 @@ public:
 
     Swapchain createSwapchain(const SwapchainOptions &options);
     Texture createTexture(const TextureOptions &options);
+    Texture adoptTexture(const Handle<Texture_t> &textureHandle);
 
     // TODO: If initialData is set, upload this to the newly created buffer.
     // OR should this helper functionality go in a slightly higher layer that

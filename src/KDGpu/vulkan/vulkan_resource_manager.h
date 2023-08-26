@@ -92,6 +92,7 @@ public:
     void removeTexture(const Handle<Texture_t> &handle);
 
     // For user-created textures
+    Handle<Texture_t> createTextureFromExistingVkImage(const Handle<Device_t> &deviceHandle, const TextureOptions &options, VkImage existingImage);
     Handle<Texture_t> createTexture(const Handle<Device_t> &deviceHandle, const TextureOptions &options) final;
     void deleteTexture(const Handle<Texture_t> &handle) final;
     VulkanTexture *getTexture(const Handle<Texture_t> &handle) const final;

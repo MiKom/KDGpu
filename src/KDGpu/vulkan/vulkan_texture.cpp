@@ -63,6 +63,7 @@ VulkanTexture::VulkanTexture(VkImage _image,
 
 void *VulkanTexture::map()
 {
+    assert(allocation != VK_NULL_HANDLE);
     auto vulkanDevice = vulkanResourceManager->getDevice(deviceHandle);
     vmaMapMemory(vulkanDevice->allocator, allocation, &mapped);
     return mapped;
@@ -70,6 +71,7 @@ void *VulkanTexture::map()
 
 void VulkanTexture::unmap()
 {
+    assert(allocation != VK_NULL_HANDLE);
     auto vulkanDevice = vulkanResourceManager->getDevice(deviceHandle);
     vmaUnmapMemory(vulkanDevice->allocator, allocation);
     mapped = nullptr;

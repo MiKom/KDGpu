@@ -138,6 +138,11 @@ Texture Device::createTexture(const TextureOptions &options)
     return Texture(m_api, m_device, options);
 }
 
+Texture Device::adoptTexture(const Handle<Texture_t> &textureHandle)
+{
+    return Texture(m_api, m_device, textureHandle);
+}
+
 Buffer Device::createBuffer(const BufferOptions &options, const void *initialData)
 {
     return Buffer(m_api, m_device, options, initialData);

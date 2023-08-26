@@ -547,6 +547,22 @@ void VulkanResourceManager::removeTexture(const Handle<Texture_t> &handle)
     m_textures.remove(handle);
 }
 
+Handle<Texture_t> VulkanResourceManager::createTextureFromExistingVkImage(const Handle<Device_t> &deviceHandle, const TextureOptions &options, VkImage existingImage)
+{
+    const auto vulkanTextureHandle = m_textures.emplace(VulkanTexture(
+            existingImage,
+            // we don't own the allocation
+            VK_NULL_HANDLE,
+            options.format,
+            options.extent,
+            options.mipLevels,
+            options.arrayLayers,
+            options.usage,
+            this,
+            deviceHandle));
+    return vulkanTextureHandle;
+}
+
 Handle<Texture_t> VulkanResourceManager::createTexture(const Handle<Device_t> &deviceHandle, const TextureOptions &options)
 {
     VulkanDevice *vulkanDevice = m_devices.get(deviceHandle);
